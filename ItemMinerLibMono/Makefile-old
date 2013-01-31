@@ -1,0 +1,15 @@
+CC=g++
+CFLAGS=-g -fPIC -O0 -DUNIX -MMD -DMONODEVELOP
+LDFLAGS=-shared -luuid
+SOURCES=$(shell echo ./*.cpp) ../../../IJS/glib/base.cpp ../../../IJS/glib/mine.cpp ../../../IJS/QMiner/qminer.cpp 
+OBJECTS=$(SOURCES:.cpp=.o)
+LIB=libItemMinerLib.so
+INC=-I"../../../IJS/glib" -I"../../../IJS/QMiner" -I"/usr/include"
+
+all: $(SOURCES) $(LIB)
+	
+$(LIB): $(OBJECTS) 
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+
+.cpp.o:
+	$(CC) $(CFLAGS) $(INC) $< -c -o $@
