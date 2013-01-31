@@ -1,0 +1,15 @@
+
+*.exe
+*.pdb
+*.config
+*.manifest
+*.dll
+*.xml
+*.vs10x
+*.idc
+*.suo
+*.pyc
+*.bin
+*.ini
+bin/
+obj/

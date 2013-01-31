@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?>
+
+<cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="cdt.managedbuild.config.llvm.clang.linux.lib.debug.1760150617">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.llvm.clang.linux.lib.debug.1760150617" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+				<externalSettings>
+					<externalSetting>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/glib"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/glib/Debug"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="glib"/>
+					</externalSetting>
+				</externalSettings>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="a" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.staticLib" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.llvm.clang.linux.lib.debug.1760150617" name="Debug" parent="cdt.managedbuild.config.llvm.clang.linux.lib.debug" preannouncebuildStep="pch" prebuildStep="clang++ ${FLAGS} ${OUTPUT_FLAGS} -x c++-header ../stdafx.h -o stdafx.h.gch">
+					<folderInfo id="cdt.managedbuild.config.llvm.clang.linux.lib.debug.1760150617." name="/" resourcePath="">
+						<toolChain id="cdt.managedbuild.toolchain.llvm.clang.linux.lib.debug.1367718465" name="LLVM with Clang (Linux)" superClass="cdt.managedbuild.toolchain.llvm.clang.linux.lib.debug">
+							<targetPlatform archList="all" id="cdt.managedbuild.target.llvm.clang.linux.platform.lib.debug.1274016261" name="Debug Platform" osList="linux,hpux,aix,qnx" superClass="cdt.managedbuild.target.llvm.clang.linux.platform.lib.debug"/>
+							<builder buildPath="${workspace_loc:/glib/Debug}" enableCleanBuild="false" id="cdt.managedbuild.target.llvm.clang.linux.builder.lib.debug.2125866495" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" parallelBuildOn="false" parallelizationNumber="2" superClass="cdt.managedbuild.target.llvm.clang.linux.builder.lib.debug"/>
+							<tool command="llvm-as" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" id="cdt.managedbuild.tool.llvm.clang.linux.assembler.lib.debug.879870943" name="LLVM assembler" superClass="cdt.managedbuild.tool.llvm.clang.linux.assembler.lib.debug"/>
+							<tool command="ar" id="cdt.managedbuild.tool.llvm.archiver.base.522864608" name="LLVM archiver" superClass="cdt.managedbuild.tool.llvm.archiver.base">
+								<option id="llvm.both.lib.option.flags.1067731762" name="Archiver flags" superClass="llvm.both.lib.option.flags" value="-r" valueType="string"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.llvm.clang.linux.c.linker.lib.debug.138095886" name="LLVM C linker" superClass="cdt.managedbuild.tool.llvm.clang.linux.c.linker.lib.debug"/>
+							<tool id="cdt.managedbuild.tool.llvm.clang.linux.cpp.linker.lib.debug.1268719176" name="LLVM C++ linker" superClass="cdt.managedbuild.tool.llvm.clang.linux.cpp.linker.lib.debug"/>
+							<tool id="cdt.managedbuild.tool.llvm.clang.linux.c.compiler.lib.debug.549905312" name="LLVM Clang" superClass="cdt.managedbuild.tool.llvm.clang.linux.c.compiler.lib.debug">
+								<option id="llvm.c_cpp.compiler.option.optimization.level.1198399536" name="Optimization Level" superClass="llvm.c_cpp.compiler.option.optimization.level" value="llvm.c_cpp.compiler.optimization.level.none" valueType="enumerated"/>
+								<option id="llvm.c_cpp.compiler.option.debugging.level.2137278915" name="Debug Level" superClass="llvm.c_cpp.compiler.option.debugging.level" value="llvm.c_cpp.compiler.debugging.level.max" valueType="enumerated"/>
+							</tool>
+							<tool command="clang++" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" id="cdt.managedbuild.tool.llvm.clang.linux.cpp.compiler.lib.debug.1265650620" name="LLVM Clang++" superClass="cdt.managedbuild.tool.llvm.clang.linux.cpp.compiler.lib.debug">
+								<option id="llvm.c_cpp.compiler.option.optimization.level.302536501" name="Optimization Level" superClass="llvm.c_cpp.compiler.option.optimization.level" value="llvm.c_cpp.compiler.optimization.level.none" valueType="enumerated"/>
+								<option id="llvm.c_cpp.compiler.option.debugging.level.1591755010" name="Debug Level" superClass="llvm.c_cpp.compiler.option.debugging.level" value="llvm.c_cpp.compiler.debugging.level.max" valueType="enumerated"/>
+								<option id="llvm.c_cpp.compiler.option.optimization.flags.258810333" name="Other optimization flags" superClass="llvm.c_cpp.compiler.option.optimization.flags" value="" valueType="string"/>
+								<option id="llvm.c_cpp.compiler.option.include.paths.5414672" name="Include paths (-I)" superClass="llvm.c_cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="/usr/lib/x86_64-linux-gnu"/>
+									<listOptionValue builtIn="false" value="/usr/include"/>
+								</option>
+								<option id="llvm.c_cpp.compiler.option.misc.other.1819342064" name="Other flags" superClass="llvm.c_cpp.compiler.option.misc.other" value="-c -fmessage-length=0  -include-pch ${workspace_loc:/glib}/${ConfigName}/stdafx.h.gch" valueType="string"/>
+								<option id="llvm.c_cpp.compiler.option.preprocessor.def.850866506" name="Defined symbols (-D)" superClass="llvm.c_cpp.compiler.option.preprocessor.def"/>
+								<inputType id="cdt.managedbuild.tool.llvm.cpp.compiler.input.245402318" superClass="cdt.managedbuild.tool.llvm.cpp.compiler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<fileInfo id="cdt.managedbuild.config.llvm.clang.linux.lib.debug.1760150617.1505353963" name="sqlite3.c" rcbsApplicability="disable" resourcePath="sqlite3.c" toolsToInvoke="cdt.managedbuild.tool.llvm.clang.linux.c.compiler.exe.debug.195937547">
+						<tool id="cdt.managedbuild.tool.llvm.clang.linux.c.compiler.exe.debug.195937547" name="LLVM Clang" superClass="cdt.managedbuild.tool.llvm.clang.linux.c.compiler.exe.debug">
+							<option id="llvm.c_cpp.compiler.option.optimization.level.1267498327" name="Optimization Level" superClass="llvm.c_cpp.compiler.option.optimization.level" value="llvm.c_cpp.compiler.optimization.level.none" valueType="enumerated"/>
+							<option id="llvm.c_cpp.compiler.option.debugging.level.230378980" name="Debug Level" superClass="llvm.c_cpp.compiler.option.debugging.level" value="llvm.c_cpp.compiler.debugging.level.max" valueType="enumerated"/>
+							<option id="llvm.c_cpp.compiler.option.optimization.flags.458396546" name="Other optimization flags" superClass="llvm.c_cpp.compiler.option.optimization.flags" value="" valueType="string"/>
+							<inputType id="cdt.managedbuild.tool.llvm.c.compiler.input.1522520756" superClass="cdt.managedbuild.tool.llvm.c.compiler.input"/>
+						</tool>
+					</fileInfo>
+					<sourceEntries>
+						<entry excluding="mine/tmine/kmpp.cpp|mine/tmine/svmbasic.cpp|net/websrv.cpp|net/webpgfetch.cpp|net/webnetobj.cpp|net/webbsfetch.cpp|net/term.cpp|net/sock.cpp|net/soap.cpp|net/smtp.cpp|net/sappsrv.cpp|net/nntp.cpp|net/netobj.cpp|net/geoip.cpp|net/appsrv.cpp|base/zipfl.cpp|base/xml.cpp|base/xmath.cpp|base/xfl.cpp|base/xdt.cpp|base/wch.cpp|base/ut.cpp|base/url.cpp|base/unicodestring.cpp|base/unicode.cpp|base/tm.cpp|base/ss.cpp|base/pp.cpp|base/os.cpp|base/md5.cpp|base/macro.cpp|base/lx.cpp|base/linalg.cpp|base/http.cpp|base/html.cpp|base/hash.cpp|base/gix.cpp|base/fl.cpp|base/exp.cpp|base/env.cpp|base/dt.cpp|base/console.cpp|base/blobbs.cpp|base/bits.cpp|base/bd.cpp|base/app.cpp|mine/dmine/valret.cpp|mine/dmine/valds.cpp|mine/dmine/tbval.cpp|mine/dmine/tb.cpp|mine/dmine/pest.cpp|mine/dmine/exset.cpp|mine/dmine/dmhd.cpp|mine/dmine/dm.cpp|mine/dmine/cfyres.cpp|mine/dmine/aest.cpp|mine/tmine/vizmap.cpp|mine/tmine/svmPrLoqo.cpp|mine/tmine/svmmodels.cpp|mine/tmine/svmBasic.cpp|mine/tmine/strkernel.cpp|mine/tmine/stopword.cpp|mine/tmine/stemming.cpp|mine/tmine/semspace.cpp|mine/tmine/phrase.cpp|mine/tmine/ontolight.cpp|mine/tmine/logreg.cpp|mine/tmine/kernelmethods.cpp|mine/tmine/ftrgen.cpp|mine/tmine/dmoz.cpp|mine/tmine/cpdoc.cpp|mine/tmine/ciawfb.cpp|mine/tmine/ccar.cpp|mine/tmine/bowmd.cpp|mine/tmine/bowlinalg.cpp|mine/tmine/bowlearn.cpp|mine/tmine/bowfl.cpp|mine/tmine/bowclust.cpp|mine/tmine/bowbs.cpp|mine/tmine/bowactlearn.cpp|mine/tmine/biling.cpp|mine/tmine/acquis.cpp|mine/wmine.cpp|mine/tmine.cpp|mine/dmine.cpp|concurrent/arch/win/thread_win.cpp|concurrent/arch/posix/thread_posix.cpp|zipcode.cpp|wordnet.cpp|vizmapgks.cpp|testBase.cpp|sgraph.cpp|proxy.cpp|pi.cpp|odbc.cpp|nytngrams.cpp|nyta.cpp|nmobj.cpp|net.cpp|mte.cpp|mkcca.cpp|medline.cpp|lsionto.cpp|graph.cpp|google.cpp|gnuplot.cpp|gkswf.cpp|gksvml.cpp|gksvcl.cpp|gksmfc.cpp|gks.cpp|fa.cpp|euproj.cpp|email.cpp|crawler.cpp|cordis.cpp|cgi.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+					</sourceEntries>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+		<cconfiguration id="cdt.managedbuild.config.llvm.clang.linux.lib.release.1845542766">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.llvm.clang.linux.lib.release.1845542766" moduleId="org.eclipse.cdt.core.settings" name="Release">
+				<externalSettings>
+					<externalSetting>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/glib"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/glib/Release"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="glib"/>
+					</externalSetting>
+				</externalSettings>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="a" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.staticLib" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.llvm.clang.linux.lib.release.1845542766" name="Release" parent="cdt.managedbuild.config.llvm.clang.linux.lib.release" preannouncebuildStep="pch" prebuildStep="clang++ -O3  -x c++-header ../stdafx.h -o stdafx.h.gch">
+					<folderInfo id="cdt.managedbuild.config.llvm.clang.linux.lib.release.1845542766." name="/" resourcePath="">
+						<toolChain id="cdt.managedbuild.toolchain.llvm.clang.linux.lib.release.447244811" name="LLVM with Clang (Linux)" superClass="cdt.managedbuild.toolchain.llvm.clang.linux.lib.release">
+							<targetPlatform archList="all" id="cdt.managedbuild.target.llvm.clang.linux.platform.lib.release.2142952879" name="Debug Platform" osList="linux,hpux,aix,qnx" superClass="cdt.managedbuild.target.llvm.clang.linux.platform.lib.release"/>
+							<builder buildPath="${workspace_loc:/glib/Release}" id="cdt.managedbuild.target.llvm.clang.linux.builder.lib.release.664363561" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" parallelBuildOn="false" parallelizationNumber="2" superClass="cdt.managedbuild.target.llvm.clang.linux.builder.lib.release"/>
+							<tool id="cdt.managedbuild.tool.llvm.clang.linux.assembler.lib.release.2113585591" name="LLVM assembler" superClass="cdt.managedbuild.tool.llvm.clang.linux.assembler.lib.release"/>
+							<tool command="llvm-ar" id="cdt.managedbuild.tool.llvm.archiver.base.344031658" name="LLVM archiver" superClass="cdt.managedbuild.tool.llvm.archiver.base">
+								<option id="llvm.both.lib.option.flags.574883252" name="Archiver flags" superClass="llvm.both.lib.option.flags" value="r" valueType="string"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.llvm.clang.linux.c.linker.lib.release.1779612806" name="LLVM C linker" superClass="cdt.managedbuild.tool.llvm.clang.linux.c.linker.lib.release"/>
+							<tool id="cdt.managedbuild.tool.llvm.clang.linux.cpp.linker.lib.release.607011735" name="LLVM C++ linker" superClass="cdt.managedbuild.tool.llvm.clang.linux.cpp.linker.lib.release"/>
+							<tool id="cdt.managedbuild.tool.llvm.clang.linux.c.compiler.lib.release.392855889" name="LLVM Clang" superClass="cdt.managedbuild.tool.llvm.clang.linux.c.compiler.lib.release">
+								<option id="llvm.c_cpp.compiler.option.optimization.level.2110737392" name="Optimization Level" superClass="llvm.c_cpp.compiler.option.optimization.level" value="llvm.c_cpp.compiler.optimization.level.most" valueType="enumerated"/>
+								<option id="llvm.c_cpp.compiler.option.debugging.level.23600885" name="Debug Level" superClass="llvm.c_cpp.compiler.option.debugging.level" value="llvm.c_cpp.compiler.debugging.level.none" valueType="enumerated"/>
+							</tool>
+							<tool command="clang++" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}  ${OUTPUT} ${INPUTS}" id="cdt.managedbuild.tool.llvm.clang.linux.cpp.compiler.lib.release.1448105254" name="LLVM Clang++" superClass="cdt.managedbuild.tool.llvm.clang.linux.cpp.compiler.lib.release">
+								<option id="llvm.c_cpp.compiler.option.optimization.level.843226929" name="Optimization Level" superClass="llvm.c_cpp.compiler.option.optimization.level" value="llvm.c_cpp.compiler.optimization.level.most" valueType="enumerated"/>
+								<option id="llvm.c_cpp.compiler.option.debugging.level.81926530" name="Debug Level" superClass="llvm.c_cpp.compiler.option.debugging.level" value="llvm.c_cpp.compiler.debugging.level.none" valueType="enumerated"/>
+								<option id="llvm.c_cpp.compiler.option.optimization.flags.782894901" name="Other optimization flags" superClass="llvm.c_cpp.compiler.option.optimization.flags" value="-emit-llvm" valueType="string"/>
+								<option id="llvm.c_cpp.compiler.option.include.paths.1162329934" name="Include paths (-I)" superClass="llvm.c_cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="/usr/lib/x86_64-linux-gnu"/>
+									<listOptionValue builtIn="false" value="/usr/include"/>
+								</option>
+								<option id="llvm.c_cpp.compiler.option.misc.other.1528999038" name="Other flags" superClass="llvm.c_cpp.compiler.option.misc.other" value="-c -fmessage-length=0  -include-pch ${workspace_loc:/glib}/${ConfigName}/stdafx.h.gch" valueType="string"/>
+								<option id="llvm.c_cpp.compiler.option.preprocessor.def.1286531344" name="Defined symbols (-D)" superClass="llvm.c_cpp.compiler.option.preprocessor.def"/>
+								<inputType id="cdt.managedbuild.tool.llvm.cpp.compiler.input.980241296" superClass="cdt.managedbuild.tool.llvm.cpp.compiler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<fileInfo id="cdt.managedbuild.config.llvm.clang.linux.lib.release.1845542766.1530325013" name="sqlite3.c" rcbsApplicability="disable" resourcePath="sqlite3.c" toolsToInvoke="cdt.managedbuild.tool.llvm.clang.linux.c.compiler.exe.debug.1599354713">
+						<tool id="cdt.managedbuild.tool.llvm.clang.linux.c.compiler.exe.debug.1599354713" name="LLVM Clang" superClass="cdt.managedbuild.tool.llvm.clang.linux.c.compiler.exe.debug">
+							<option id="llvm.c_cpp.compiler.option.optimization.level.1015308299" name="Optimization Level" superClass="llvm.c_cpp.compiler.option.optimization.level" value="llvm.c_cpp.compiler.optimization.level.most" valueType="enumerated"/>
+							<option id="llvm.c_cpp.compiler.option.debugging.level.1947478530" name="Debug Level" superClass="llvm.c_cpp.compiler.option.debugging.level" value="llvm.c_cpp.compiler.debugging.level.none" valueType="enumerated"/>
+							<option id="llvm.c_cpp.compiler.option.optimization.flags.2115920922" name="Other optimization flags" superClass="llvm.c_cpp.compiler.option.optimization.flags" value="-emit-llvm" valueType="string"/>
+							<inputType id="cdt.managedbuild.tool.llvm.c.compiler.input.1444188258" superClass="cdt.managedbuild.tool.llvm.c.compiler.input"/>
+						</tool>
+						<tool customBuildStep="true" id="org.eclipse.cdt.managedbuilder.ui.rcbs.428513530" name="Resource Custom Build Step">
+							<inputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.inputtype.1442679023" name="Resource Custom Build Step Input Type">
+								<additionalInput kind="additionalinputdependency" paths=""/>
+							</inputType>
+							<outputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.outputtype.1582231220" name="Resource Custom Build Step Output Type"/>
+						</tool>
+					</fileInfo>
+					<sourceEntries>
+						<entry excluding="mine/tmine/kmpp.cpp|mine/tmine/svmbasic.cpp|net/websrv.cpp|net/webpgfetch.cpp|net/webnetobj.cpp|net/webbsfetch.cpp|net/term.cpp|net/sock.cpp|net/soap.cpp|net/smtp.cpp|net/sappsrv.cpp|net/nntp.cpp|net/netobj.cpp|net/geoip.cpp|net/appsrv.cpp|base/zipfl.cpp|base/xml.cpp|base/xmath.cpp|base/xfl.cpp|base/xdt.cpp|base/wch.cpp|base/ut.cpp|base/url.cpp|base/unicodestring.cpp|base/unicode.cpp|base/tm.cpp|base/ss.cpp|base/pp.cpp|base/os.cpp|base/md5.cpp|base/macro.cpp|base/lx.cpp|base/linalg.cpp|base/http.cpp|base/html.cpp|base/hash.cpp|base/gix.cpp|base/fl.cpp|base/exp.cpp|base/env.cpp|base/dt.cpp|base/console.cpp|base/blobbs.cpp|base/bits.cpp|base/bd.cpp|base/app.cpp|mine/dmine/valret.cpp|mine/dmine/valds.cpp|mine/dmine/tbval.cpp|mine/dmine/tb.cpp|mine/dmine/pest.cpp|mine/dmine/exset.cpp|mine/dmine/dmhd.cpp|mine/dmine/dm.cpp|mine/dmine/cfyres.cpp|mine/dmine/aest.cpp|mine/tmine/vizmap.cpp|mine/tmine/svmPrLoqo.cpp|mine/tmine/svmmodels.cpp|mine/tmine/svmBasic.cpp|mine/tmine/strkernel.cpp|mine/tmine/stopword.cpp|mine/tmine/stemming.cpp|mine/tmine/semspace.cpp|mine/tmine/phrase.cpp|mine/tmine/ontolight.cpp|mine/tmine/logreg.cpp|mine/tmine/kernelmethods.cpp|mine/tmine/ftrgen.cpp|mine/tmine/dmoz.cpp|mine/tmine/cpdoc.cpp|mine/tmine/ciawfb.cpp|mine/tmine/ccar.cpp|mine/tmine/bowmd.cpp|mine/tmine/bowlinalg.cpp|mine/tmine/bowlearn.cpp|mine/tmine/bowfl.cpp|mine/tmine/bowclust.cpp|mine/tmine/bowbs.cpp|mine/tmine/bowactlearn.cpp|mine/tmine/biling.cpp|mine/tmine/acquis.cpp|mine/wmine.cpp|mine/tmine.cpp|mine/dmine.cpp|concurrent/arch/win/thread_win.cpp|concurrent/arch/posix/thread_posix.cpp|zipcode.cpp|wordnet.cpp|vizmapgks.cpp|testBase.cpp|sgraph.cpp|proxy.cpp|pi.cpp|odbc.cpp|nytngrams.cpp|nyta.cpp|nmobj.cpp|net.cpp|mte.cpp|mkcca.cpp|medline.cpp|lsionto.cpp|graph.cpp|google.cpp|gnuplot.cpp|gkswf.cpp|gksvml.cpp|gksvcl.cpp|gksmfc.cpp|gks.cpp|fa.cpp|euproj.cpp|email.cpp|crawler.cpp|cordis.cpp|cgi.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+					</sourceEntries>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="glib.cdt.managedbuild.target.llvm.clang.linux.lib.1025758940" name="Static Library" projectType="cdt.managedbuild.target.llvm.clang.linux.lib"/>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+	<storageModule moduleId="refreshScope" versionNumber="1">
+		<resource resourceType="PROJECT" workspacePath="/glib"/>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.llvm.clang.linux.lib.debug.1760150617;cdt.managedbuild.config.llvm.clang.linux.lib.debug.1760150617.1505353963;cdt.managedbuild.tool.llvm.clang.linux.c.compiler.exe.debug.195937547;cdt.managedbuild.tool.llvm.c.compiler.input.1522520756">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.llvm.ui.LLVMManagedMakePerProjectProfileClang"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.llvm.clang.linux.lib.release.1845542766;cdt.managedbuild.config.llvm.clang.linux.lib.release.1845542766.;cdt.managedbuild.tool.llvm.clang.linux.cpp.compiler.lib.release.1448105254;cdt.managedbuild.tool.llvm.cpp.compiler.input.980241296">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.llvm.ui.LLVMManagedMakePerProjectProfileCPP"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.llvm.clang.linux.lib.release.1845542766;cdt.managedbuild.config.llvm.clang.linux.lib.release.1845542766.1530325013;cdt.managedbuild.tool.llvm.clang.linux.c.compiler.exe.debug.1599354713;cdt.managedbuild.tool.llvm.c.compiler.input.1444188258">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.llvm.ui.LLVMManagedMakePerProjectProfileClang"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.llvm.clang.linux.lib.debug.1760150617;cdt.managedbuild.config.llvm.clang.linux.lib.debug.1760150617.;cdt.managedbuild.tool.llvm.clang.linux.cpp.compiler.lib.debug.1265650620;cdt.managedbuild.tool.llvm.cpp.compiler.input.245402318">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.llvm.ui.LLVMManagedMakePerProjectProfileClang++"/>
+		</scannerConfigBuildInfo>
+	</storageModule>
+</cproject>

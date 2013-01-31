@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{17E13072-21E6-40A9-9219-E19B5A090983}</ProjectGuid>
+    <Target>Bin</Target>
+    <Language>CPP</Language>
+    <Compiler>
+      <Compiler ctype="GppCompiler" />
+    </Compiler>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin</OutputPath>
+    <DefineSymbols>DEBUG MONODEVELOP UNIX</DefineSymbols>
+    <SourceDirectory>.</SourceDirectory>
+    <OutputName>ItemMinerLib</OutputName>
+    <CompileTarget>SharedLibrary</CompileTarget>
+    <Includes>
+      <Includes>
+		<Include>../../_Tools/glib</Include>
+		<Include>../../_Tools/QMiner</Include>
+        <Include>/usr/include</Include>
+      </Includes>
+    </Includes>
+    <ExtraLinkerArguments>-luuid</ExtraLinkerArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin</OutputPath>
+    <DefineSymbols>MONODEVELOP UNIX</DefineSymbols>
+    <SourceDirectory>.</SourceDirectory>
+    <OptimizationLevel>3</OptimizationLevel>
+    <OutputName>ItemMinerLib</OutputName>
+    <CompileTarget>SharedLibrary</CompileTarget>
+    <Includes>
+      <Includes>
+		<Include>../../_Tools/glib</Include>
+		<Include>../../_Tools/QMiner</Include>
+        <Include>/usr/include</Include>
+      </Includes>
+    </Includes>
+    <ExtraLinkerArguments>-luuid</ExtraLinkerArguments>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ItemMinerLib.cpp" />
+    <Compile Include="Profile.cpp" />
+    <Compile Include="Stores.cpp" />
+    <Compile Include="xmlParsing.cpp" />
+    <Compile Include="..\_Tools\QMiner\qminer.cpp">
+      <Link>qminer.cpp</Link>
+    </Compile>
+    <Compile Include="..\_Tools\glib\mine.cpp">
+      <Link>mine.cpp</Link>
+    </Compile>
+    <Compile Include="..\_Tools\glib\base.cpp">
+      <Link>base.cpp</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ItemMinerLib.h" />
+    <None Include="Profile.h" />
+    <None Include="Stores.h" />
+    <None Include="Tokenizer.h" />
+    <None Include="xmlParsing.h" />
+    <None Include="..\_Tools\QMiner\qminer.h">
+      <Link>qminer.h</Link>
+    </None>
+    <None Include="..\_Tools\glib\mine.h">
+      <Link>mine.h</Link>
+    </None>
+    <None Include="..\_Tools\glib\base.h">
+      <Link>base.h</Link>
+    </None>
+  </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <MonoDevelop.Autotools.MakefileInfo RelativeMakefileName="Makefile">
+          <BuildFilesVar />
+          <DeployFilesVar />
+          <ResourcesVar />
+          <OthersVar />
+          <GacRefVar />
+          <AsmRefVar />
+          <ProjectRefVar />
+        </MonoDevelop.Autotools.MakefileInfo>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+</Project>
