@@ -10,8 +10,6 @@ static const uchar LinkStoreId = 4;
 static const uchar AttachmentStoreId = 5;
 static const uchar TagStoreId = 6;
 
-static const int NoMetaData = -1;
-
 static const int InvalidPartVId = -1;
 
 enum ItemTypeEnum
@@ -86,19 +84,18 @@ public:
 		TUInt64 Time;
 		TInt ThreadId;
 		TInt TagsVId;
-		TInt MetaId;
 		TInt PartVId;
 	
 		TItemRec() { }
 		TItemRec(const TCh _ItemType, const TUInt& _EntryIdId, const TUInt64& _Time, 
-				const TInt& _ThreadId, const TInt& _TagsVId, const TInt& _MetaId):
+				const TInt& _ThreadId, const TInt& _TagsVId):
 				ItemType(_ItemType), EntryIdId(_EntryIdId), Time(_Time), 
-				ThreadId(_ThreadId), TagsVId(_TagsVId), MetaId(_MetaId), PartVId(InvalidPartVId) { }
+				ThreadId(_ThreadId), TagsVId(_TagsVId), PartVId(InvalidPartVId) { }
 
-		TItemRec(TSIn& SIn): ItemType(SIn), EntryIdId(SIn), Time(SIn), ThreadId(SIn), TagsVId(SIn), MetaId(SIn), PartVId(SIn) { }
+		TItemRec(TSIn& SIn): ItemType(SIn), EntryIdId(SIn), Time(SIn), ThreadId(SIn), TagsVId(SIn), PartVId(SIn) { }
 		int64 GetMemUsed() const { return int64(sizeof(TCh) + 5*sizeof(TUInt) + sizeof(TUInt64)); }
 
-		void Load(TSIn& SIn) { ItemType = TCh(SIn); EntryIdId.Load(SIn); Time.Load(SIn); ThreadId.Load(SIn); TagsVId.Load(SIn); MetaId.Load(SIn); PartVId.Load(SIn); }
+		void Load(TSIn& SIn) { ItemType = TCh(SIn); EntryIdId.Load(SIn); Time.Load(SIn); ThreadId.Load(SIn); TagsVId.Load(SIn); PartVId.Load(SIn); }
 		void Save(TSOut& SOut) const 
 		{ 
 			ItemType.Save(SOut);
@@ -106,7 +103,6 @@ public:
 			Time.Save(SOut);
 			ThreadId.Save(SOut);
 			TagsVId.Save(SOut);
-			MetaId.Save(SOut);
 			PartVId.Save(SOut);
 		}
 	};
@@ -118,7 +114,6 @@ public:
 	TInt TimeFieldId;
 	TInt ThreadIdFieldId;
 	TInt TagsFieldId;
-	TInt MetaIdFieldId;
 
 	//join ids
 	TInt JoinHasLinksId;
@@ -137,7 +132,6 @@ private:
 	THash<TIntV, TInt> PartsToFqH;	// how frequently the same group of participants occurs in the data
 	THashSet<TStrV> TagsHS;
 	PStrPool EntryIdPool;
-	PStrPool MetaPool;
 	
 	TStr StoreFNm;
 	TFAccess FAccess;
@@ -178,23 +172,12 @@ public:
 
 	// custom functions
 	uint64 AddRec(int ItemId, const TCh ItemType, const TStr& EntryId, const TUInt64& Time, 
-				const TInt& ThreadId, const TStrV& TagsV, const TStr& Meta);
+				const TInt& ThreadId, const TStrV& TagsV);
 	void RemoveItem(const int ItemId);
 	bool GetItem(const TInt& ItemId, TItemRec& Item) const ;
 	bool UpdateItem(const TInt& ItemId, const TItemRec& Item);
 	bool IsItem(const TInt& ItemId) { return ItemsH.IsKey(ItemId); }
 	
-	TInt AddMeta(const TStr& MetaData) const
-	{
-		if (MetaData == "") return NoMetaData;
-		return MetaPool->AddStr(MetaData);
-	}
-	TStr GetMeta(const TInt& MetaId) const
-	{
-		if (MetaId == NoMetaData) return "";
-		return MetaPool->GetStr((uint) MetaId);
-	}
-
 	TPartV GetPartV(const int PartVId) const;
 	TInt AddTagsV(TStrV TagV);
 	TStrV GetTagsV(const int TagVId) const;

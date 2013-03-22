@@ -106,7 +106,7 @@ namespace KEUIApp
 			_keui.InitAnnotationService(SettingsServer.AppFolder);
 			
 			_keui.IndexNewOntologyConcepts();
-			//ProcessFile(@"e:\Data\ALERT-FTP\KDE\2012_10_23_11_40_37_906_5b276188-91c1-45b3-8afb-e89d80b7acbf_Response.xml", AQSubscriberIssueNew_OnMessageReceived);
+			//ProcessFile(@"e:\Data\Temp\forumevent.xml", AQSubscriberForumPost_OnMessageReceived);
 			//ProcessFolder(@"e:\Data\ALERT-FTP\KDE\TestIssue", AQSubscriberIssueUpdate_OnMessageReceived);
 
 			bool ok = InitActiveMQ();
@@ -194,19 +194,19 @@ namespace KEUIApp
 				AQSubscriberCustomItemToIndex = new ActiveMqHelper.TopicSubscriber(AQSession, _activeMQSettings.TopicNameCustomItemToIndex);
 				AQSubscriberIdentitySnapshot = new ActiveMqHelper.TopicSubscriber(AQSession, _activeMQSettings.TopicNameIdentitySnapshot);
 					
-				AQSubscriberConceptNew.OnMessageReceived += new ActiveMqHelper.TopicSubscriber.MessageReceivedDelegate(AQSubscriberConceptNew_OnMessageReceived);
-				AQSubscriberKEUIRequest.OnMessageReceived += new ActiveMqHelper.TopicSubscriber.MessageReceivedDelegate(AQSubscriberKEUIRequest_OnMessageReceived);
-				AQSubscriberForumPost.OnMessageReceived += new ActiveMqHelper.TopicSubscriber.MessageReceivedDelegate(AQSubscriberForumPost_OnMessageReceived);
-				AQSubscriberIssueNew.OnMessageReceived += new ActiveMqHelper.TopicSubscriber.MessageReceivedDelegate(AQSubscriberIssueNew_OnMessageReceived);
-				AQSubscriberIssueUpdate.OnMessageReceived += new ActiveMqHelper.TopicSubscriber.MessageReceivedDelegate(AQSubscriberIssueUpdate_OnMessageReceived);
-				AQSubscriberEmail.OnMessageReceived += new ActiveMqHelper.TopicSubscriber.MessageReceivedDelegate(AQSubscriberEmail_OnMessageReceived);
-				AQSubscriberSourceCode.OnMessageReceived += new ActiveMqHelper.TopicSubscriber.MessageReceivedDelegate(AQSubscriberCommit_OnMessageReceived);
-				AQSubscriberWikiPostNew.OnMessageReceived += new ActiveMqHelper.TopicSubscriber.MessageReceivedDelegate(AQSubscriberWikiPostNew_OnMessageReceived);
-				AQSubscriberWikiPostModified.OnMessageReceived += new ActiveMqHelper.TopicSubscriber.MessageReceivedDelegate(AQSubscriberWikiPostModified_OnMessageReceived);
-				AQSubscriberWikiPostDeleted.OnMessageReceived += new ActiveMqHelper.TopicSubscriber.MessageReceivedDelegate(AQSubscriberWikiPostDeleted_OnMessageReceived);
-				AQSubscriberTextToAnnotate.OnMessageReceived += new ActiveMqHelper.TopicSubscriber.MessageReceivedDelegate(AQSubscriberTextToAnnotate_OnMessageReceived);
-				AQSubscriberCustomItemToIndex.OnMessageReceived += new ActiveMqHelper.TopicSubscriber.MessageReceivedDelegate(AQSubscriberCustomItemToIndex_OnMessageReceived);
-				AQSubscriberIdentitySnapshot.OnMessageReceived += new ActiveMqHelper.TopicSubscriber.MessageReceivedDelegate(AQSubscriberIdentitySnapshot_OnMessageReceived);
+				AQSubscriberConceptNew.OnMessageReceived += AQSubscriberConceptNew_OnMessageReceived;
+				AQSubscriberKEUIRequest.OnMessageReceived += AQSubscriberKEUIRequest_OnMessageReceived;
+				AQSubscriberForumPost.OnMessageReceived += AQSubscriberForumPost_OnMessageReceived;
+				AQSubscriberIssueNew.OnMessageReceived += AQSubscriberIssueNew_OnMessageReceived;
+				AQSubscriberIssueUpdate.OnMessageReceived += AQSubscriberIssueUpdate_OnMessageReceived;
+				AQSubscriberEmail.OnMessageReceived += AQSubscriberEmail_OnMessageReceived;
+				AQSubscriberSourceCode.OnMessageReceived += AQSubscriberCommit_OnMessageReceived;
+				AQSubscriberWikiPostNew.OnMessageReceived += AQSubscriberWikiPostNew_OnMessageReceived;
+				AQSubscriberWikiPostModified.OnMessageReceived += AQSubscriberWikiPostModified_OnMessageReceived;
+				AQSubscriberWikiPostDeleted.OnMessageReceived += AQSubscriberWikiPostDeleted_OnMessageReceived;
+				AQSubscriberTextToAnnotate.OnMessageReceived += AQSubscriberTextToAnnotate_OnMessageReceived;
+				AQSubscriberCustomItemToIndex.OnMessageReceived += AQSubscriberCustomItemToIndex_OnMessageReceived;
+				AQSubscriberIdentitySnapshot.OnMessageReceived += AQSubscriberIdentitySnapshot_OnMessageReceived;
 
 				AQSubscriberConceptNew.Start(AQConsumerConceptNewId);
 				AQSubscriberKEUIRequest.Start(AQConsumerKEUIRequestId);

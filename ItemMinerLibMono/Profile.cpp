@@ -235,15 +235,7 @@ TStr TProfile::AddItem(const TStr& ItemInfo, const TStr& ItemContent)
 	TStr Tags = TagsTok.Empty() ? "" : TagsTok->GetTokStr(false);
 	TStrV TagsV; Tags.SplitOnAllCh(',', TagsV);
 		
-	TStr MetaData;
-	PXmlTok Tok = ItemXml->GetTagTok("metaData");
-	if (!Tok.Empty() && Tok->GetSubToks() > 0)
-	{
-		for (int SubTokN=0; SubTokN<Tok->GetSubToks(); SubTokN++)
-			MetaData += Tok->GetSubTok(SubTokN)->GetTokStr(true);
-	}
-
-	ItemStore->AddRec(ItemId, (TCh) ItemType, EntryId, Time, ThreadId, TagsV, MetaData);
+	ItemStore->AddRec(ItemId, (TCh) ItemType, EntryId, Time, ThreadId, TagsV);
 	
 	if (ThreadId != -1)
 		Index->IndexJoin(ThreadStore, ThreadStore->JoinHasItemsId, ThreadId, ItemId); 
@@ -348,7 +340,7 @@ TStr TProfile::AddItem(const TStr& ItemInfo, const TStr& ItemContent)
 	{
 		for (int conceptInd = 0; conceptInd < ConceptV.Len(); conceptInd++) 
 		{
-			TStr ConceptUrl = ConceptV[conceptInd]->GetArgVal("id", "");
+			TStr ConceptUrl = ConceptV[conceptInd]->GetArgVal("uri", "");
 			int WId = BowDocBsConcepts->AddWordStr(ConceptUrl);
 			TFlt ConceptWeight = ConceptV[conceptInd]->GetFltArgVal("weight", 0);
 			ConceptsWIdWgtPrV.Add(TIntFltPr(WId, ConceptWeight));
@@ -361,17 +353,16 @@ TStr TProfile::AddItem(const TStr& ItemInfo, const TStr& ItemContent)
 	if (SettingUpdateThreadBow)
 		BowDocBsConceptsByThread->AppendDoc(ThreadId.GetStr(), TStrV(), ConceptsThreadWIdWgtPrV);
 
-	
-	FullTextTermV.Clr();
 	PXmlTok TextToIndex = ItemXml->GetTagTok("textToIndex");
 	if (!TextToIndex.Empty())
 	{
-		TStr MetaText = TextToIndex->GetTokStr(false);
-		if (MetaText != "")
+		TStr ExtraText = TextToIndex->GetTokStr(false);
+		if (ExtraText != "")
 		{
-			IndexVoc->GetTokenizer()->GetTokens(MetaText, FullTextTermV);
+			TStrV ExtraTextTermV;
+			IndexVoc->GetTokenizer()->GetTokens(ExtraText, ExtraTextTermV);
 			if (IndexText == 1)
-				Index->Index(IndexTextSearchKeyId, FullTextTermV, ItemId);
+				Index->Index(IndexTextSearchKeyId, ExtraTextTermV, ItemId);
 		}
 	}
 
@@ -560,6 +551,8 @@ TStr TProfile::GeneralQuery(const PXmlDoc& QueryXml)
 	{
 		if (Sorting == "dateDesc" || Sorting == "dateAsc")
 			ItemRecSet->SortByField(OgBase, Sorting == "dateDesc" ? false : true, ItemStore->TimeFieldId);	
+		else if (Sorting == "itemIdAsc" || Sorting == "itemIdDesc")
+			ItemRecSet->SortById(Sorting == "itemIdAsc");
 		else if (Sorting == "relevance")
 			ItemRecSet->SortByFq(false);		
 		return GetItemData(ItemRecSet, QueryXml);
@@ -882,24 +875,23 @@ TStr TProfile::GetTimelineData(const POgRecSet& RecSet, const PXmlDoc& QueryXml)
 TStr TProfile::GetKeywordData(const POgRecSet& RecSet, const PXmlDoc& QueryXml)
 {
 	TChA ResultChA;
-	TInt SampleSize = GetIntArg(QueryXml->GetTagTok("query|params"), "sampleSize", -1);
-	TInt KeywordCount = GetIntArg(QueryXml->GetTagTok("query|params"), "keywordCount", 30);
-	TStr MethodUsed = GetStrArg(QueryXml->GetTagTok("query|params"), "keywordMethod", "localConceptSpV");
-	TStr SVMInterestingClass = GetStrArg(QueryXml->GetTagTok("query|params"), "SVMInterestingClass", "positive");
-	TStr KeywordSource = GetStrArg(QueryXml->GetTagTok("query|params"), "keywordSource", "text");
-	int totalRecCount = RecSet->GetRecs();
-
-	POgRecSet ItemRecSetSmall = RecSet;
-	if (SampleSize > 0)
-		ItemRecSetSmall = RecSet->GetSampleRecSet(SampleSize, false);
-
-	PBowSpV BowSpV;
-	PBowKWordSet KWordSet = ComputeKWordSet(ItemRecSetSmall, MethodUsed, KeywordSource, SVMInterestingClass);
+	PXmlTok ParamsTok = QueryXml->GetTagTok("query|params");
+	TInt SampleSize = ParamsTok->GetIntArgVal("sampleSize", 5000);
+	TInt KeywordCount = ParamsTok->GetIntArgVal("keywordCount", 30);
+	TStr MethodUsed = ParamsTok->GetStrArgVal("keywordMethod", "localConceptSpV");
+	TStr SVMInterestingClass = ParamsTok->GetStrArgVal("SVMInterestingClass", "positive");
+	TStr KeywordSource = ParamsTok->GetStrArgVal("keywordSource", "text");
+	
+	if (SampleSize <= 0) 
+		SampleSize = 5000;
+	SampleSize = min(SampleSize, 5000);
+	POgRecSet SampleRecSet = RecSet->GetSampleRecSet(SampleSize, false);
+	PBowKWordSet KWordSet = ComputeKWordSet(SampleRecSet, MethodUsed, KeywordSource, SVMInterestingClass);
 	
 	ResultChA += "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
 	ResultChA += "<results type=\"keywordData\">\n";
 
-	ResultChA += TStr::FmtBf(Bf, BfSize, "	<info totalCount=\"%d\" />\n", (int)totalRecCount);
+	ResultChA += TStr::FmtBf(Bf, BfSize, "	<info totalCount=\"%d\" usedRecCount=\"%d\" />\n", RecSet->GetRecs(), SampleRecSet->GetRecs());
 	if (!KWordSet.Empty())
 		WriteKeywordSet(ResultChA, KWordSet, KeywordCount);
 	ResultChA += "</results>";
@@ -1476,14 +1468,6 @@ void TProfile::AddItemResult(const TUInt64 ItemId, TChA& ResultChA, const bool I
 			ResultChA += "<a><h>" + TXmlLx::GetXmlStrFromPlainStr(LinkStore->GetFieldStr(LinksSet->GetRec(a).GetRecId(), LinkStore->LinkHrefFieldId)) + "</h><t>" + TXmlLx::GetXmlStrFromPlainStr(LinkStore->GetFieldStr(LinksSet->GetRec(a).GetRecId(), LinkStore->LinkTextFieldId)) + "</t></a>\n";
 			//ResultChA += "<a><h>" + LinkStore->GetFieldStr(LinksSet->GetRec(a).GetRecId(), LinkStore->LinkHrefFieldId) + "</h><t>" + LinkStore->GetFieldStr(LinksSet->GetRec(a).GetRecId(), LinkStore->LinkTextFieldId) + "</t></a>\n";
 		ResultChA += "			</links>\n";
-	}
-
-	int MetaId = ItemStore->GetFieldInt(ItemId, ItemStore->MetaIdFieldId);
-	if (MetaId != NoMetaData) {
-		TStr MetaData = ItemStore->GetFieldStr(ItemId, ItemStore->MetaIdFieldId);
-		ResultChA += "			<metaData>";
-		ResultChA += MetaData;							
-		ResultChA += "</metaData>\n";
 	}
 
 	POgRecSet RelatedSet = ItemRec.DoJoin(OgBase, ItemStore->JoinHasRelatedItemsId);

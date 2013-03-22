@@ -875,24 +875,23 @@ TStr TProfile::GetTimelineData(const POgRecSet& RecSet, const PXmlDoc& QueryXml)
 TStr TProfile::GetKeywordData(const POgRecSet& RecSet, const PXmlDoc& QueryXml)
 {
 	TChA ResultChA;
-	TInt SampleSize = GetIntArg(QueryXml->GetTagTok("query|params"), "sampleSize", -1);
-	TInt KeywordCount = GetIntArg(QueryXml->GetTagTok("query|params"), "keywordCount", 30);
-	TStr MethodUsed = GetStrArg(QueryXml->GetTagTok("query|params"), "keywordMethod", "localConceptSpV");
-	TStr SVMInterestingClass = GetStrArg(QueryXml->GetTagTok("query|params"), "SVMInterestingClass", "positive");
-	TStr KeywordSource = GetStrArg(QueryXml->GetTagTok("query|params"), "keywordSource", "text");
-	int totalRecCount = RecSet->GetRecs();
-
-	POgRecSet ItemRecSetSmall = RecSet;
-	if (SampleSize > 0)
-		ItemRecSetSmall = RecSet->GetSampleRecSet(SampleSize, false);
-
-	PBowSpV BowSpV;
-	PBowKWordSet KWordSet = ComputeKWordSet(ItemRecSetSmall, MethodUsed, KeywordSource, SVMInterestingClass);
+	PXmlTok ParamsTok = QueryXml->GetTagTok("query|params");
+	TInt SampleSize = ParamsTok->GetIntArgVal("sampleSize", 5000);
+	TInt KeywordCount = ParamsTok->GetIntArgVal("keywordCount", 30);
+	TStr MethodUsed = ParamsTok->GetStrArgVal("keywordMethod", "localConceptSpV");
+	TStr SVMInterestingClass = ParamsTok->GetStrArgVal("SVMInterestingClass", "positive");
+	TStr KeywordSource = ParamsTok->GetStrArgVal("keywordSource", "text");
+	
+	if (SampleSize <= 0) 
+		SampleSize = 5000;
+	SampleSize = min(SampleSize, 5000);
+	POgRecSet SampleRecSet = RecSet->GetSampleRecSet(SampleSize, false);
+	PBowKWordSet KWordSet = ComputeKWordSet(SampleRecSet, MethodUsed, KeywordSource, SVMInterestingClass);
 	
 	ResultChA += "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
 	ResultChA += "<results type=\"keywordData\">\n";
 
-	ResultChA += TStr::FmtBf(Bf, BfSize, "	<info totalCount=\"%d\" />\n", (int)totalRecCount);
+	ResultChA += TStr::FmtBf(Bf, BfSize, "	<info totalCount=\"%d\" usedRecCount=\"%d\" />\n", RecSet->GetRecs(), SampleRecSet->GetRecs());
 	if (!KWordSet.Empty())
 		WriteKeywordSet(ResultChA, KWordSet, KeywordCount);
 	ResultChA += "</results>";

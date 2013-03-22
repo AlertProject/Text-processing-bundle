@@ -1860,7 +1860,7 @@ namespace KEUIApp
 				if (wgtNode != null)
 					wgt = wgtNode.InnerText;
 				if (!string.IsNullOrEmpty(url))
-					ret += String.Format("<concept id=\"{0}\" weight=\"{1}\" />", url, wgt);
+					ret += String.Format("<concept uri=\"{0}\" weight=\"{1}\" />", url, wgt);
 			}
 			return ret;
 		}

@@ -7,7 +7,6 @@ TItemStore::TItemStore(const TStr& _StoreFNm, const int64& MxCacheSize, const PO
 {
 	IndexVocInst = IndexVoc;
 	EntryIdPool = TStrPool::New();
-	MetaPool = TStrPool::New();
 	// set fields
 	ItemTypeFieldId = AddFieldDesc(TOgFieldDesc("ItemType", oftInt, offtNumeric, ofatNone, ofdtText));
 	ItemIdFieldId = AddFieldDesc(TOgFieldDesc("ItemId", oftInt, offtNumeric, ofatNone, ofdtText));
@@ -15,7 +14,6 @@ TItemStore::TItemStore(const TStr& _StoreFNm, const int64& MxCacheSize, const PO
 	TimeFieldId = AddFieldDesc(TOgFieldDesc("Time", oftTm, offtTm, ofatTimeline, ofdtText));
 	ThreadIdFieldId = AddFieldDesc(TOgFieldDesc("ThreadId", oftInt, offtToken, ofatNone, ofdtText));
 	TagsFieldId = AddFieldDesc(TOgFieldDesc("Tags", oftStrV, offtToken, ofatNone, ofdtText));
-	MetaIdFieldId = AddFieldDesc(TOgFieldDesc("MetaId", oftInt, offtToken, ofatNone, ofdtText));
 
 	// set store description
 	JoinHasLinksId = AddJoinDesc(TOgJoinDesc("hasLinks", LinkStoreId, ItemStoreId, IndexVoc));
@@ -37,7 +35,6 @@ TItemStore::TItemStore(const TStr& _StoreFNm, const TFAccess& _FAccess, const in
 	TimeFieldId.Load(SIn);
 	ThreadIdFieldId.Load(SIn);
 	TagsFieldId.Load(SIn);
-	MetaIdFieldId.Load(SIn);
 
 	// joins
 	JoinHasLinksId.Load(SIn);
@@ -51,7 +48,6 @@ TItemStore::TItemStore(const TStr& _StoreFNm, const TFAccess& _FAccess, const in
 	PartsToFqH.Load(SIn);
 	TagsHS.Load(SIn);
 	EntryIdPool = TStrPool::Load(SIn);
-	MetaPool = TStrPool::Load(SIn);
 }
 
 TItemStore::~TItemStore()
@@ -69,7 +65,6 @@ TItemStore::~TItemStore()
 		TimeFieldId.Save(SOut);
 		ThreadIdFieldId.Save(SOut);
 		TagsFieldId.Save(SOut);
-		MetaIdFieldId.Save(SOut);
 		// joins
 		JoinHasLinksId.Save(SOut);
 		JoinHasAttachmentsId.Save(SOut);
@@ -81,7 +76,6 @@ TItemStore::~TItemStore()
 		PartsToFqH.Save(SOut);
 		TagsHS.Save(SOut);
 		EntryIdPool->Save(SOut);
-		MetaPool->Save(SOut);
 	}
 }
 
@@ -91,7 +85,6 @@ int TItemStore::GetFieldInt(const uint64& ItemId, const int& FieldId) const
 	if (!ok) return -1;
 	if (FieldId == ItemIdFieldId) { return (int) ItemId; }
 	else if (FieldId == ThreadIdFieldId) { return Item.ThreadId; }
-	else if (FieldId == MetaIdFieldId) { return Item.MetaId; }
 	else if (FieldId == ItemTypeFieldId) { return (int) Item.ItemType; }
 	FieldError(FieldId, "Int"); 
 	return -1; 
@@ -102,7 +95,6 @@ TStr TItemStore::GetFieldStr(const uint64& ItemId, const int& FieldId) const
 	TItemRec Item; bool ok = GetItem((int)ItemId, Item); 
 	if (!ok) return "Invalid ItemId";
 	if (FieldId == EntryIdFieldId) { return GetEntryId(Item.EntryIdId); }
-	else if (FieldId == MetaIdFieldId) { return GetMeta(Item.MetaId); }
 	FieldError(FieldId, "Str"); 
 	return ""; 
 }
@@ -134,11 +126,11 @@ uint64 TItemStore::GetFieldUInt64(const uint64& ItemId, const int& FieldId) cons
 }
 
 uint64 TItemStore::AddRec(int ItemId, const TCh ItemType, const TStr& EntryId, const TUInt64& Time, 
-				const TInt& ThreadId, const TStrV& TagsV, const TStr& Meta)
+				const TInt& ThreadId, const TStrV& TagsV)
 {
 	// store article content
 	int TagVId = AddTagsV(TagsV);
-	const uint64 CacheId = ItemsC.AddVal(TItemRec(ItemType, EntryIdPool->AddStr(EntryId), Time, ThreadId, TagVId, MetaPool->AddStr(Meta)));
+	const uint64 CacheId = ItemsC.AddVal(TItemRec(ItemType, EntryIdPool->AddStr(EntryId), Time, ThreadId, TagVId));
 	// index article URI and map it to cache id
 	const uint64 RecId = (uint64)ItemsH.AddDat(ItemId, CacheId);
 	
@@ -280,7 +272,6 @@ void TItemStore::PrintStatus(TChA& StatusChA)
 	StatusChA += "Account frequencies hash size: " + TInt(PartsToFqH.GetMemUsed() / TInt::Kilo).GetStr() + "KB\n";
 	StatusChA += "Tags hash set items: " + TInt(TagsHS.Len()).GetStr() + "\n";
 	StatusChA += "Tags hash set size: " + TInt(TagsHS.GetMemUsed() / TInt::Kilo).GetStr() + "KB\n";
-	StatusChA += "Meta string pool size: " + TInt(MetaPool->Size() / TInt::Kilo).GetStr() + "KB\n";
 	StatusChA += "EntryId string pool size: " + TInt(EntryIdPool->Size() / TInt::Kilo).GetStr() + "KB\n";
 	StatusChA += "\n";
 }
