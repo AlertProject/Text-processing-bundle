@@ -722,6 +722,8 @@ namespace ContextifyServer.Base
 		public string MinerQuery(QueryBase query)
 		{
 			if (ProfileHandle == -1) return null;
+			Stopwatch stopwatch = new Stopwatch();
+			stopwatch.Start();
 			if (Settings.StoreToFileQueryRequest)
 				StoreToFile("request", query.ToString());
 			string ret = null;
@@ -745,6 +747,10 @@ namespace ContextifyServer.Base
 				ret = AddPeopleInfoToResults(ret);
 			if (Settings.StoreToFileQueryResponse)
 				StoreToFile("response", ret);
+			string queryType = "";
+			if (query is GeneralQuery) queryType = (query as GeneralQuery).QueryParams.ResultData.ToString();
+			else if (query is CustomQuery) queryType = (query as CustomQuery).QueryParams.GetType().Name;
+			LogInfo(String.Format("MailData. MinerQuery for query type {0} took {1} ms", queryType, stopwatch.ElapsedMilliseconds));
 			return ret;
 		}
 
