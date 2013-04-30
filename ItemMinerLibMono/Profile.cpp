@@ -876,15 +876,15 @@ TStr TProfile::GetKeywordData(const POgRecSet& RecSet, const PXmlDoc& QueryXml)
 {
 	TChA ResultChA;
 	PXmlTok ParamsTok = QueryXml->GetTagTok("query|params");
-	TInt SampleSize = ParamsTok->GetIntArgVal("sampleSize", 5000);
+	TInt SampleSize = ParamsTok->GetIntArgVal("sampleSize", 1000);
 	TInt KeywordCount = ParamsTok->GetIntArgVal("keywordCount", 30);
 	TStr MethodUsed = ParamsTok->GetStrArgVal("keywordMethod", "localConceptSpV");
 	TStr SVMInterestingClass = ParamsTok->GetStrArgVal("SVMInterestingClass", "positive");
 	TStr KeywordSource = ParamsTok->GetStrArgVal("keywordSource", "text");
 	
 	if (SampleSize <= 0) 
-		SampleSize = 5000;
-	SampleSize = min(SampleSize, 5000);
+		SampleSize = 1000;
+	SampleSize = min((int) SampleSize, 1000);
 	POgRecSet SampleRecSet = RecSet->GetSampleRecSet(SampleSize, false);
 	PBowKWordSet KWordSet = ComputeKWordSet(SampleRecSet, MethodUsed, KeywordSource, SVMInterestingClass);
 	

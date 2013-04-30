@@ -750,7 +750,7 @@ namespace ContextifyServer.Base
 			string queryType = "";
 			if (query is GeneralQuery) queryType = (query as GeneralQuery).QueryParams.ResultData.ToString();
 			else if (query is CustomQuery) queryType = (query as CustomQuery).QueryParams.GetType().Name;
-			LogInfo(String.Format("MailData. MinerQuery for query type {0} took {1} ms", queryType, stopwatch.ElapsedMilliseconds));
+			//LogInfo(String.Format("MailData. MinerQuery for query type {0} took {1} ms", queryType, stopwatch.ElapsedMilliseconds));
 			return ret;
 		}
 

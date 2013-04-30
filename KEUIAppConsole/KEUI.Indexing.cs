@@ -411,12 +411,12 @@ namespace KEUIApp
 				var wikiNode = eventDataNode.SelectSingleNode("./r2:wikiSensor");
 				string subject = GetNodeInnerText(wikiNode, "./r2:title");
 				string body = GetNodeInnerText(wikiNode, "./r2:rawText");
-				string id = GetNodeInnerText(wikiNode, "./r2:id");
+				//string id = GetNodeInnerText(wikiNode, "./r2:id");
 				
 				string timeStr = GetNodeInnerText(wikiNode, "./r2:date");	//
 				
 				string author = GetNodeInnerText(wikiNode, "./r2:user/r2:name");
-				string authorUri = GetNodeInnerText(mdNode, "./o:fromUri");		//
+				string authorUri = GetNodeInnerText(mdNode, "./o:userUri");		//
 				
 				DateTime time = DateTime.Now;
 				if (!string.IsNullOrEmpty(timeStr) && !DateTime.TryParse(timeStr, out time))

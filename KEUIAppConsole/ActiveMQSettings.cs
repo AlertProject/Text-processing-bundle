@@ -58,9 +58,9 @@ namespace KEUIApp
 			TopicNameIssueUpdate = sett != null && !string.IsNullOrEmpty(sett.TopicNameIssueUpdate) ? sett.TopicNameIssueUpdate : "ALERT.Metadata.IssueUpdate.Stored";
 			TopicNameEmail = sett != null && !string.IsNullOrEmpty(sett.TopicNameEmail) ? sett.TopicNameEmail : "ALERT.Metadata.MailNew.Stored";
 			TopicNameCommit = sett != null && !string.IsNullOrEmpty(sett.TopicNameCommit) ? sett.TopicNameCommit : "ALERT.Metadata.CommitNew.Stored";
-			TopicNameWikiPostNew = sett != null && !string.IsNullOrEmpty(sett.TopicNameWikiPostNew) ? sett.TopicNameWikiPostNew : "ALERT.Metadata.WikiPostNew.Stored";
-			TopicNameWikiPostModified = sett != null && !string.IsNullOrEmpty(sett.TopicNameWikiPostModified) ? sett.TopicNameWikiPostModified : "ALERT.Metadata.WikiPostModified.Stored";
-			TopicNameWikiPostDeleted = sett != null && !string.IsNullOrEmpty(sett.TopicNameWikiPostDeleted) ? sett.TopicNameWikiPostDeleted : "ALERT.Metadata.WikiPostDeleted.Stored";
+			TopicNameWikiPostNew = sett != null && !string.IsNullOrEmpty(sett.TopicNameWikiPostNew) ? sett.TopicNameWikiPostNew : "ALERT.Metadata.ArticleAdded.Stored";
+			TopicNameWikiPostModified = sett != null && !string.IsNullOrEmpty(sett.TopicNameWikiPostModified) ? sett.TopicNameWikiPostModified : "ALERT.Metadata.ArticleModified.Stored";
+			TopicNameWikiPostDeleted = sett != null && !string.IsNullOrEmpty(sett.TopicNameWikiPostDeleted) ? sett.TopicNameWikiPostDeleted : "ALERT.Metadata.ArticleDeleted.Stored";
 			TopicNameTextToAnnotate = sett != null && !string.IsNullOrEmpty(sett.TopicNameTextToAnnotate) ? sett.TopicNameTextToAnnotate : "ALERT.*.TextToAnnotate";
 
 			TopicNameIdentitySnapshot = sett != null && !string.IsNullOrEmpty(sett.TopicNameIdentitySnapshot) ? sett.TopicNameIdentitySnapshot : "ALERT.*.IdentitySnapshot";
@@ -75,8 +75,8 @@ namespace KEUIApp
 			TopicNameKEUIPublishCommit = sett != null && !string.IsNullOrEmpty(sett.TopicNameKEUIPublishCommit) ? sett.TopicNameKEUIPublishCommit : "ALERT.KEUI.CommitNew.Annotated";
 			TopicNameKEUIPublishTextToAnnotate = sett != null && !string.IsNullOrEmpty(sett.TopicNameKEUIPublishTextToAnnotate) ? sett.TopicNameKEUIPublishTextToAnnotate : "ALERT.KEUI.TextToAnnotate.Annotated";
 
-			TopicNameKEUIPublishWikiPostNew = sett != null && !string.IsNullOrEmpty(sett.TopicNameKEUIPublishWikiPostNew) ? sett.TopicNameKEUIPublishWikiPostNew : "ALERT.KEUI.WikiPostNew.Annotated";
-			TopicNameKEUIPublishWikiPostModified = sett != null && !string.IsNullOrEmpty(sett.TopicNameKEUIPublishWikiPostModified) ? sett.TopicNameKEUIPublishWikiPostModified : "ALERT.KEUI.WikiPostModified.Annotated";
+			TopicNameKEUIPublishWikiPostNew = sett != null && !string.IsNullOrEmpty(sett.TopicNameKEUIPublishWikiPostNew) ? sett.TopicNameKEUIPublishWikiPostNew : "ALERT.KEUI.ArticleAdded.Annotated";
+			TopicNameKEUIPublishWikiPostModified = sett != null && !string.IsNullOrEmpty(sett.TopicNameKEUIPublishWikiPostModified) ? sett.TopicNameKEUIPublishWikiPostModified : "ALERT.KEUI.ArticleModified.Annotated";
 		}
 
 		[XmlIgnoreAttribute]
